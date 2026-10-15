@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "useCacheOnFailure": true,
+  "repos": [
+    {
+      "id": "example",
+      "url": "",
+      "github": "jersoet/KubeJSsmpscripts",
+      "branch": "main",
+      "path": "",
+      "requires": [],
+      "enabled": false
+    }
+  ]
+}
