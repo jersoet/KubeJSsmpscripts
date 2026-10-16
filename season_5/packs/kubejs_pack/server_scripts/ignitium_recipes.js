@@ -20,7 +20,7 @@ ServerEvents.recipes(event => {
     'create_deep_dark:echo_armor_boots'
   )
   event.replaceInput(
-    { output: 'cataclysm:ignitium_sword' },
+    { output: 'cataclysm:the_incinerator' },
     'minecraft:netherite_sword',
     'create_deep_dark:echo_sword'
   )

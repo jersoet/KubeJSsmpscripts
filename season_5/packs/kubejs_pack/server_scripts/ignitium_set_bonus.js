@@ -3,9 +3,11 @@ PlayerEvents.tick(event => {
 
   if (player.age % 20 !== 0) return
 
+  const chestItem = player.chestArmorItem.id
   const hasFullIgnitiumSet =
     player.headArmorItem.id === 'cataclysm:ignitium_helmet' &&
-    player.chestArmorItem.id === 'cataclysm:ignitium_chestplate' &&
+    (chestItem === 'cataclysm:ignitium_chestplate' ||
+      chestItem === 'cataclysm:ignitium_elytra_chestplate') &&
     player.legsArmorItem.id === 'cataclysm:ignitium_leggings' &&
     player.feetArmorItem.id === 'cataclysm:ignitium_boots'
 
