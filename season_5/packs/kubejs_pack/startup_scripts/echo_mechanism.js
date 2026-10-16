@@ -1,6 +1,6 @@
 StartupEvents.registry('item', event => {
     event.create('echo_mechanism')
         .displayName('Echo Mechanism')
-        .texture('kubejs:items/echo_mechanism.png')
+        .texture('kubejs:item/echo_mechanism')
         .maxStackSize(64)
 })
