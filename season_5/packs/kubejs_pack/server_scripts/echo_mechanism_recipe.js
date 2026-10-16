@@ -7,6 +7,10 @@ ServerEvents.recipes(event => {
         'create:incomplete_precision_mechanism',
         ['create:incomplete_precision_mechanism', 'minecraft:echo_shard']
       ),
+      event.recipes.create.pressing(
+        'create:incomplete_precision_mechanism',
+        'create:incomplete_precision_mechanism'
+      ),
       event.recipes.create.deploying(
         'create:incomplete_precision_mechanism',
         ['create:incomplete_precision_mechanism', 'create_deep_dark:echo_ingot']
