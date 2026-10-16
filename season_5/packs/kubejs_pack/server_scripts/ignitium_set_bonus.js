@@ -3,13 +3,13 @@ PlayerEvents.tick(event => {
 
   if (player.age % 20 !== 0) return
 
-  const chestItem = player.chestArmorItem.id
+  const chestItem = player.chestArmorItem
   const hasFullIgnitiumSet =
-    player.headArmorItem.id === 'cataclysm:ignitium_helmet' &&
+    player.headArmorItem === 'cataclysm:ignitium_helmet' &&
     (chestItem === 'cataclysm:ignitium_chestplate' ||
       chestItem === 'cataclysm:ignitium_elytra_chestplate') &&
-    player.legsArmorItem.id === 'cataclysm:ignitium_leggings' &&
-    player.feetArmorItem.id === 'cataclysm:ignitium_boots'
+    player.legsArmorItem === 'cataclysm:ignitium_leggings' &&
+    player.feetArmorItem === 'cataclysm:ignitium_boots'
 
   if (hasFullIgnitiumSet) {
     player.potionEffects.add('minecraft:resistance', 40, 1, false, true)
