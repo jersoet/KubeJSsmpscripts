@@ -3,19 +3,23 @@ ServerEvents.recipes(event => {
 
   event.recipes.create.sequenced_assembly(
     ['kubejs:nuclear_mechanism'],
-    'kubejs:echo_mechanism',
+    'create:precision_mechanism',
     [
+      event.recipes.create.filling(
+        incompleteMechanism,
+        [incompleteMechanism, Fluid.of('createnuclear:uranium', 1000)]
+      ),
       event.recipes.create.deploying(
         incompleteMechanism,
-        [incompleteMechanism, 'createnuclear:uranium_rod']
+        [incompleteMechanism, 'alexscaves:uranium_rod']
       ),
       event.recipes.create.pressing(
         incompleteMechanism,
         incompleteMechanism
       ),
-      event.recipes.create.deploying(
+      event.recipes.create.pressing(
         incompleteMechanism,
-        [incompleteMechanism, 'createnuclear:uranium_rod']
+        incompleteMechanism
       )
     ]
   )

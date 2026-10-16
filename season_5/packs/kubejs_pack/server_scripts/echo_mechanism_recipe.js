@@ -1,30 +1,32 @@
 ServerEvents.recipes(event => {
+  const incompleteMechanism = 'kubejs:incomplete_echo_mechanism'
+
   event.recipes.create.sequenced_assembly(
     ['kubejs:echo_mechanism'],
     'create:precision_mechanism',
     [
       event.recipes.create.deploying(
-        'create:incomplete_precision_mechanism',
-        ['create:incomplete_precision_mechanism', 'minecraft:echo_shard']
+        incompleteMechanism,
+        [incompleteMechanism, 'minecraft:echo_shard']
       ),
       event.recipes.create.pressing(
-        'create:incomplete_precision_mechanism',
-        'create:incomplete_precision_mechanism'
+        incompleteMechanism,
+        incompleteMechanism
       ),
       event.recipes.create.deploying(
-        'create:incomplete_precision_mechanism',
-        ['create:incomplete_precision_mechanism', 'create_deep_dark:echo_ingot']
+        incompleteMechanism,
+        [incompleteMechanism, 'create_deep_dark:echo_ingot']
       ),
       event.recipes.create.pressing(
-        'create:incomplete_precision_mechanism',
-        'create:incomplete_precision_mechanism'
+        incompleteMechanism,
+        incompleteMechanism
       ),
       event.recipes.create.deploying(
-        'create:incomplete_precision_mechanism',
-        ['create:incomplete_precision_mechanism', 'create:brass_sheet']
+        incompleteMechanism,
+        [incompleteMechanism, 'create:brass_sheet']
       )
     ]
   )
-    .transitionalItem('create:incomplete_precision_mechanism')
+    .transitionalItem(incompleteMechanism)
     .loops(1)
 })

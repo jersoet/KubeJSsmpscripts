@@ -4,6 +4,11 @@ StartupEvents.registry('item', event => {
         .texture('kubejs:item/echo_mechanism')
         .maxStackSize(64)
 
+    event.create('incomplete_echo_mechanism')
+        .displayName('Incomplete Echo Mechanism')
+        .texture('kubejs:item/incomplete_echo_mechanism')
+        .maxStackSize(64)
+
     event.create('nuclear_mechanism')
         .displayName('Nuclear Mechanism')
         .texture('kubejs:item/nuclear_mechanism')
