@@ -5,6 +5,10 @@ ServerEvents.recipes(event => {
     ['kubejs:nuclear_mechanism'],
     'create:precision_mechanism',
     [
+      event.recipes.create.deploying(
+        incompleteMechanism,
+        [incompleteMechanism, 'create:iron_sheet']
+      ),
       event.recipes.create.filling(
         incompleteMechanism,
         [incompleteMechanism, Fluid.of('createnuclear:uranium', 1000)]
