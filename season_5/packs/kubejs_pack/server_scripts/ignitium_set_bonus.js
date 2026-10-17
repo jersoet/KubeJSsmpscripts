@@ -1,24 +1,26 @@
-PlayerEvents.tick(event => {
-  const player = event.player
+ServerEvents.tick(event => {
+    // Optional optimization: only run every 20 ticks (1 second) to save performance
+    if (event.server.getTickCount() % 20 != 0) return;
 
-  // Alleen op de server uitvoeren en elke 1 seconde (20 ticks) om lag te voorkomen
-  if (player.level.isClientSide() || player.age % 20 !== 0) return
+    event.server.getPlayerList().getPlayers().forEach(player => {
+        // Check individual armor slots using 1.21 item container methods
+        let helmet = player.getItemBySlot('head')
+        let chestplate = player.getItemBySlot('chest')
+        let leggings = player.getItemBySlot('legs')
+        let boots = player.getItemBySlot('feet')
 
-  // De correcte KubeJS methode om armor op te vragen via EquipmentSlot (indicies: feet=0, legs=1, chest=2, head=3)
-  const headItem = player.getItemBySlot('head').id
-  const chestItem = player.getItemBySlot('chest').id
-  const legsItem = player.getItemBySlot('legs').id
-  const feetItem = player.getItemBySlot('feet').id
-
-  const hasFullIgnitiumSet =
-    headItem === 'cataclysm:ignitium_helmet' &&
-    (chestItem === 'cataclysm:ignitium_chestplate' ||
-      chestItem === 'cataclysm:ignitium_elytra_chestplate') &&
-    legsItem === 'cataclysm:ignitium_leggings' &&
-    feetItem === 'cataclysm:ignitium_boots'
-
-  if (hasFullIgnitiumSet) {
-    player.potionEffects.add('minecraft:resistance', 40, 1, false, true)
-    player.potionEffects.add('minecraft:strength', 40, 1, false, true)
-  }
+        // Match the exact item IDs from the Cataclysm mod
+        if (
+            helmet.id == 'cataclysm:ignitium_helmet' &&
+            chestplate.id == 'cataclysm:ignitium_chestplate' &&
+            leggings.id == 'cataclysm:ignitium_leggings' &&
+            boots.id == 'cataclysm:ignitium_boots'
+        ) {
+            // Apply Resistance (duration in ticks, amplifier, ambient, show particles)
+            player.potionEffects.add('minecraft:resistance', 40, 0, false, false)
+            
+            // Apply Strength II (amplifier 1 = Level 2)
+            player.potionEffects.add('minecraft:strength', 40, 1, false, false)
+        }
+    })
 })
