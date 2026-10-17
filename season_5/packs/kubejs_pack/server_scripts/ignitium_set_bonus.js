@@ -1,13 +1,14 @@
 PlayerEvents.tick(event => {
   const player = event.player
 
-  // Voer de check alleen uit op de server en elke 20 ticks (1 seconde)
+  // Alleen op de server uitvoeren en elke 1 seconde (20 ticks) om lag te voorkomen
   if (player.level.isClientSide() || player.age % 20 !== 0) return
 
-  const headItem = player.headArmorItem.id
-  const chestItem = player.chestArmorItem.id
-  const legsItem = player.legsArmorItem.id
-  const feetItem = player.feetArmorItem.id
+  // De correcte KubeJS methode om armor op te vragen via EquipmentSlot (indicies: feet=0, legs=1, chest=2, head=3)
+  const headItem = player.getItemBySlot('head').id
+  const chestItem = player.getItemBySlot('chest').id
+  const legsItem = player.getItemBySlot('legs').id
+  const feetItem = player.getItemBySlot('feet').id
 
   const hasFullIgnitiumSet =
     headItem === 'cataclysm:ignitium_helmet' &&
@@ -17,7 +18,6 @@ PlayerEvents.tick(event => {
     feetItem === 'cataclysm:ignitium_boots'
 
   if (hasFullIgnitiumSet) {
-    // PotionEffects.add(effect, duration_ticks, amplifier, ambient, particles)
     player.potionEffects.add('minecraft:resistance', 40, 1, false, true)
     player.potionEffects.add('minecraft:strength', 40, 1, false, true)
   }
